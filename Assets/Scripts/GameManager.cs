@@ -2,12 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using StateMachine;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : GamePlayBehaviour
 {
-
+    [SerializeField] TMP_Text _txt;
+    [SerializeField] GameObject _pauseMenu;
     private void Start()
     {
+        Time.timeScale = 1;
+
         OnNextGameState(GamePlayStates.INITIALIZING);
     }
 
@@ -30,6 +35,9 @@ public class GameManager : GamePlayBehaviour
                 }
             case GamePlayStates.START:
                 {
+                    _txt.text = "";
+
+                    _pauseMenu.SetActive(false);
 
                     OnNextGameState.Invoke(GamePlayStates.GAMEPLAY);
 
@@ -47,6 +55,8 @@ public class GameManager : GamePlayBehaviour
                 {
                     Time.timeScale = 0;
 
+                    _txt.text = "PAUSE";
+
                     PauseGame();
 
                     break;
@@ -54,6 +64,30 @@ public class GameManager : GamePlayBehaviour
             case GamePlayStates.GAMEOVER:
                 {
                     Time.timeScale = 0;
+
+                    _txt.text = "GAME OVER \n =(";
+
+                    _pauseMenu.SetActive(true);
+
+                    if (Input.GetMouseButton(0))
+                    {
+                        ChangeScene.OnReloadScene?.Invoke();
+                    }
+
+                    break;
+                }
+            case GamePlayStates.FINISH_LINE:
+                {
+                    Time.timeScale = 0;
+
+                    _txt.text = "YOU WIN!!";
+
+                    _pauseMenu.SetActive(true);
+
+                    if (Input.GetMouseButton(0))
+                    {
+                        ChangeScene.OnReloadScene?.Invoke();
+                    }
 
                     break;
                 }
@@ -66,10 +100,12 @@ public class GameManager : GamePlayBehaviour
         {
             if(GetCurrentGameState() != GamePlayStates.PAUSE)
             {
+                _pauseMenu.SetActive(true);
                 OnNextGameState?.Invoke(GamePlayStates.PAUSE);
             }
             else
             {
+                _pauseMenu.SetActive(false);
                 OnNextGameState?.Invoke(GamePlayStates.GAMEPLAY);
             }
         }

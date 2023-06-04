@@ -8,14 +8,7 @@ public class PlayerBehaviour : MonoBehaviour
     public event Action OnActing;
     public event Action OnPausing;
 
-    Rigidbody rb;
-
-    [SerializeField] float _walkSpeed;
-    float _runSpeed;
-    float _move;
-    float _moveX;
-
-    bool _isRunning;
+    Rigidbody _rb;
 
     [SerializeField] Transform _footDetector;
 
@@ -26,43 +19,33 @@ public class PlayerBehaviour : MonoBehaviour
 
     Animator _anim;
 
+    [SerializeField] float _forwardSpeed;
+
+    [SerializeField] float _horizontalVelocity;
+
+    Vector3 _positionToGo;
+
     private void Start()
     {
-        _runSpeed = _walkSpeed * 2;
-
-        rb = GetComponent<Rigidbody>();
+        _rb = GetComponent<Rigidbody>();
 
         _canMove = true;
     }
 
     void LateUpdate()
     {
-        if (OnActing == null)
-        {
-            OnActing = Attacking;
-        }
+        transform.position += Vector3.right * _forwardSpeed * Time.deltaTime;
 
-        if (!_isRunning)
-        {
-            _isRunning = false;
-           _move = _walkSpeed;
-        }
+        if (Input.GetMouseButton(0))
+            Moving(Input.mousePosition.x - _positionToGo.x);
 
-        if (_moveX == 0)
-        {
-           // _anim.SetBool("WALK", false);
-        }
-        else
-        {
-            //_anim.SetBool("WALK", true);
-        }
+        _positionToGo = Input.mousePosition;
+    }
 
-        if (_canMove == false)
-        {
-            _moveX = 0;
-        }
-
-        rb.velocity = new Vector3(0, 0, _moveX * _runSpeed);
+    void Moving(float m)
+    {
+        //transform.position -= Vector3.forward * Time.deltaTime * m * _horizontalVelocity;
+        _rb.velocity -= Vector3.forward * Time.deltaTime * m * _horizontalVelocity;
     }
 
     #region - InputManager Buttons
@@ -70,24 +53,19 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (_canMove)
         {
-            _moveX = context.ReadValue<Vector2>().x;
+          
         }
     }
 
-    public void OnRun(InputAction.CallbackContext context)
+    public void OnTouchMove(InputAction.CallbackContext context)
     {
-        _isRunning = context.ReadValueAsButton();
+        if (_canMove && context.performed)
+           
 
-        if (_isRunning)
-        {
-            _move = _runSpeed;
-        }
-        else
-        {
-            _runSpeed = _walkSpeed;
-        }
+
+        if (context.canceled)
+            _positionToGo.z = 0;
     }
-
 
     public void OnInteracting(InputAction.CallbackContext context)
     {
@@ -106,10 +84,6 @@ public class PlayerBehaviour : MonoBehaviour
     }
 
     #endregion
-    public void Attacking()
-    {
-        _anim.SetTrigger("ATTACK");
-    }
 
     public bool CanMove(bool b)
     {

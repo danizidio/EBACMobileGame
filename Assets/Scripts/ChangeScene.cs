@@ -1,13 +1,15 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TimeCounter;
+using System;
 
 public class ChangeScene : Timer
 {
     public delegate void _onChangeScene(string sceneName);
     public static _onChangeScene OnChangeScene;
+
+    public static Action OnReloadScene;
 
     [SerializeField] bool _useTimer, _automaticSceneChange;
 
@@ -31,6 +33,11 @@ public class ChangeScene : Timer
         }
 
         SetTimer(timer, () => StartCoroutine(LoadingNextScene(_nextSceneName)));
+    }
+
+    public void ReloadScene()
+    {
+        StartCoroutine(LoadingNextScene(_nextSceneName));
     }
 
     //BUTTON METHOD
@@ -60,6 +67,7 @@ public class ChangeScene : Timer
     private void OnEnable()
     {
         OnChangeScene += SelectingNextScene;
+        OnReloadScene = ReloadScene;
     }
     private void OnDisable()
     {

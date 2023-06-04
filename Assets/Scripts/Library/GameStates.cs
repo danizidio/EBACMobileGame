@@ -4,7 +4,8 @@ public enum GamePlayStates
     START,
     GAMEPLAY,
     PAUSE,
-    GAMEOVER
+    GAMEOVER,
+    FINISH_LINE
 }
 
 namespace StateMachine
