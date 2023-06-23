@@ -1,17 +1,40 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class Coins : MonoBehaviour
+public class Coins : CollectibleItens
 {
-    [SerializeField] GameObject _coinTakeFX;
+    [SerializeField] bool _coinTaken;
+    Vector3 _playerPos;
 
     private void OnTriggerEnter(Collider other)
     {
-        PlayerBehaviour p = other.GetComponent<PlayerBehaviour>();
+        p = other.GetComponentInParent<PlayerBehaviour>();
+        _playerPos = other.transform.position;
 
         if (p == null) return;
 
-        Instantiate(_coinTakeFX, this.transform.position, Quaternion.identity);
+        CollectedItem();
+    }
+    private void FixedUpdate()
+    {
+        if(_coinTaken)
+        {
+            transform.position = Vector3.Lerp(transform.position, _playerPos, 5 * Time.deltaTime);
+        }
+    }
 
+    protected override void CollectedItem()
+    {
+        base.CollectedItem();
+
+        _coinTaken = true;
+
+        Invoke("EndObj", 2);    
+    }
+
+    void EndObj()
+    {
         Destroy(gameObject);
     }
 }

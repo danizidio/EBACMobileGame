@@ -11,6 +11,7 @@ public class GameManager : GamePlayBehaviour
     [SerializeField] GameObject _pauseMenu;
     private void Start()
     {
+        Application.targetFrameRate = 60;
         Time.timeScale = 1;
 
         OnNextGameState(GamePlayStates.INITIALIZING);

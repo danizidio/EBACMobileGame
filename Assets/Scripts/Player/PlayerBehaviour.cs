@@ -11,6 +11,7 @@ public class PlayerBehaviour : MonoBehaviour
     Rigidbody _rb;
 
     [SerializeField] Transform _footDetector;
+    [SerializeField] GameObject _coinCollector;
 
     [SerializeField] bool _canMove;
     public bool canMove { get { return _canMove; } }
@@ -20,6 +21,9 @@ public class PlayerBehaviour : MonoBehaviour
     Animator _anim;
 
     [SerializeField] float _forwardSpeed;
+    [SerializeField] float _speedbonus = 1;
+
+    float _heightBonus = 0;
 
     [SerializeField] float _horizontalVelocity;
 
@@ -34,7 +38,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     void LateUpdate()
     {
-        transform.position += Vector3.right * _forwardSpeed * Time.deltaTime;
+        transform.position += Vector3.right * _forwardSpeed * _speedbonus * Time.deltaTime;
+        transform.position = new Vector3(transform.position.x, transform.position.y + _heightBonus,0);
 
         if (Input.GetMouseButton(0))
             Moving(Input.mousePosition.x - _positionToGo.x);
@@ -88,5 +93,32 @@ public class PlayerBehaviour : MonoBehaviour
     public bool CanMove(bool b)
     {
         return _canMove = b;
+    }
+
+    public void SpeedBuff(float speed)
+    {
+        _speedbonus = speed;
+    }
+
+    public void HeightBuff(float height)
+    {
+        _heightBonus = height;
+    }
+
+    public void InvincibleBuff(bool active)
+    {
+        if(active)
+        {
+            gameObject.layer = 12;
+        }
+        else
+        {
+            gameObject.layer = 3;
+        }
+    }
+
+    public void CollectorBuff(Vector3 size)
+    {
+        _coinCollector.transform.localScale = size;
     }
 }

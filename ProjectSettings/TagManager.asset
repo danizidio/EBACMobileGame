@@ -16,16 +16,16 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - PLAYER
   - Water
   - UI
   - GROUND
   - FLOATINGPLATFORM
-  - 
-  - 
-  - 
-  - 
-  - 
+  - COINCOLLECTOR
+  - OBSTACLES
+  - COIN
+  - POWERUP
+  - INVINCIBLE
   - 
   - 
   - 
