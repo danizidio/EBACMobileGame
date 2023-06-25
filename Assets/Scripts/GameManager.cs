@@ -1,17 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using StateMachine;
 using TMPro;
-using UnityEngine.SceneManagement;
 
 public class GameManager : GamePlayBehaviour
 {
+    public static GameManager instance;
+
     [SerializeField] TMP_Text _txt;
     [SerializeField] GameObject _pauseMenu;
+
+    PlayerBehaviour _playerBehaviour;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     private void Start()
     {
         Application.targetFrameRate = 60;
+
         Time.timeScale = 1;
 
         OnNextGameState(GamePlayStates.INITIALIZING);
@@ -36,11 +44,16 @@ public class GameManager : GamePlayBehaviour
                 }
             case GamePlayStates.START:
                 {
-                    _txt.text = "";
+                    _txt.text = "TOUCH TO START";
 
-                    _pauseMenu.SetActive(false);
+                    if (Input.GetMouseButton(0))
+                    {
+                        _txt.text = "";
 
-                    OnNextGameState.Invoke(GamePlayStates.GAMEPLAY);
+                        _pauseMenu.SetActive(false);
+
+                        StartGame();
+                    }
 
                     break;
                 }
@@ -110,5 +123,20 @@ public class GameManager : GamePlayBehaviour
                 OnNextGameState?.Invoke(GamePlayStates.GAMEPLAY);
             }
         }
+    }
+
+    public void StartGame()
+    {
+        _playerBehaviour.GetComponent<PlayerBehaviour>().enabled = true;
+
+        _playerBehaviour.AnimStart();
+
+       OnNextGameState.Invoke(GamePlayStates.GAMEPLAY);
+    }
+
+
+    public PlayerBehaviour PlayerCharacter(PlayerBehaviour playerBehaviour)
+    {
+        return _playerBehaviour = playerBehaviour;
     }
 }

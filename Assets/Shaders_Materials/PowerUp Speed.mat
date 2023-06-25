@@ -23,7 +23,7 @@ Material:
   m_Name: PowerUp Speed
   m_Shader: {fileID: -6465566751694194690, guid: a27fd18235df8a14299a40cbc81ea5e7, type: 3}
   m_Parent: {fileID: 2100000, guid: 305f36b1da4a3d84b863fafce496d9fb, type: 2}
-  m_ModifiedSerializedProperties: 0
+  m_ModifiedSerializedProperties: 16
   m_ValidKeywords:
   - _ALPHATEST_ON
   - _SURFACE_TYPE_TRANSPARENT
@@ -31,25 +31,33 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 3000
   stringTagMap:
     RenderType: Transparent
-  disabledShaderPasses: []
+  disabledShaderPasses:
+  - DepthOnly
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
+    - _AlphaToMask: 0
     - _BottomFixed: 1
     - _BottomSize: 0.64
     - _ColorFadeFX: 1
     - _DissolveFX: 0
+    - _DstBlend: 10
     - _EmissionFX: 1
     - _LightningFX: 1
     - _NoiseFx: 1
     - _Scale_1: 0.693
     - _SpeedToFade: 2.03
+    - _SrcBlend: 5
+    - _Surface: 1
+    - _ZTest: 2
+    - _ZWrite: 0
+    - _ZWriteControl: 0
     m_Colors:
     - _Color_1: {r: 0, g: 0.061237633, b: 0.6509434, a: 0}
     - _Color_Emission: {r: 0.019935932, g: 0.30760017, b: 0.6037736, a: 0}

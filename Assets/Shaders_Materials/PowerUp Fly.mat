@@ -21,7 +21,8 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap:
     RenderType: Transparent
-  disabledShaderPasses: []
+  disabledShaderPasses:
+  - DepthOnly
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
@@ -37,6 +38,9 @@ Material:
     - _NoiseFx: 1
     - _Scale_1: 0.693
     - _SpeedToFade: 2.03
+    - _ZTest: 2
+    - _ZWrite: 0
+    - _ZWriteControl: 0
     m_Colors:
     - _Color: {r: 0.9159869, g: 15.999998, b: 0, a: 0}
     - _Color_1: {r: 0.048805248, g: 0.6509804, b: 0, a: 0}

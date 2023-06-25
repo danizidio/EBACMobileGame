@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using SaveLoadPlayerPrefs;
+using System.Collections;
 
 public class PlayerBehaviour : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     SaveLoad s;
 
-    Animator _anim;
+    [SerializeField] Animator _anim;
 
     [SerializeField] float _forwardSpeed;
     [SerializeField] float _speedbonus = 1;
@@ -38,13 +39,20 @@ public class PlayerBehaviour : MonoBehaviour
 
     void LateUpdate()
     {
-        transform.position += Vector3.right * _forwardSpeed * _speedbonus * Time.deltaTime;
-        transform.position = new Vector3(transform.position.x, transform.position.y + _heightBonus,0);
+        if (_canMove)
+        {
+            transform.position += Vector3.right * _forwardSpeed * _speedbonus * Time.deltaTime;
+            transform.position = new Vector3(transform.position.x, transform.position.y + _heightBonus, 0);
 
-        if (Input.GetMouseButton(0))
-            Moving(Input.mousePosition.x - _positionToGo.x);
+            if (Input.GetMouseButton(0))
+                Moving(Input.mousePosition.x - _positionToGo.x);
 
-        _positionToGo = Input.mousePosition;
+            _positionToGo = Input.mousePosition;
+        }
+        else
+        {
+            _positionToGo = Vector3.zero;
+        }
     }
 
     void Moving(float m)
@@ -65,8 +73,6 @@ public class PlayerBehaviour : MonoBehaviour
     public void OnTouchMove(InputAction.CallbackContext context)
     {
         if (_canMove && context.performed)
-           
-
 
         if (context.canceled)
             _positionToGo.z = 0;
@@ -90,14 +96,16 @@ public class PlayerBehaviour : MonoBehaviour
 
     #endregion
 
-    public bool CanMove(bool b)
-    {
-        return _canMove = b;
-    }
-
+    #region - PlayerBuffs -
     public void SpeedBuff(float speed)
     {
         _speedbonus = speed;
+        _anim.speed = speed /2;
+
+        if(speed == 0)
+        {
+            _anim.speed = 1;
+        }
     }
 
     public void HeightBuff(float height)
@@ -120,5 +128,40 @@ public class PlayerBehaviour : MonoBehaviour
     public void CollectorBuff(Vector3 size)
     {
         _coinCollector.transform.localScale = size;
+    }
+    #endregion
+    public bool CanMove(bool b)
+    {
+        return _canMove = b;
+    }
+
+    public void AnimStart()
+    {
+        _anim.SetTrigger("START");
+    }
+
+    public IEnumerator  AnimGameOver()
+    {
+        _canMove = false;
+
+        _anim.SetTrigger("DEAD");
+
+        yield return new WaitForSeconds(2);
+        GameManager.OnNextGameState?.Invoke(GamePlayStates.GAMEOVER);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.gameObject.layer == 6)
+        {
+            _anim.SetBool("JUMP", false);
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if(collision.collider.gameObject.layer == 6)
+        {
+            _anim.SetBool("JUMP",true);
+        }
     }
 }

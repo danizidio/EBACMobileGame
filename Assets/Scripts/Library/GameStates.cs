@@ -39,7 +39,6 @@ namespace StateMachine
             return _gamePlayCurrentState = _gamePlayNextState ;
         }
 
-
         public GamePlayStates GetCurrentGameState()
         {
             return GamePlayCurrentState;
@@ -54,8 +53,4 @@ namespace StateMachine
             OnNextGameState -= NextGameStates;
         }
     }
-
-
-
-
 }

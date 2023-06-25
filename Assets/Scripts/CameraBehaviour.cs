@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
@@ -33,6 +32,8 @@ public class CameraBehaviour : MonoBehaviour
         if (_p != null)
         {
             GetComponent<CinemachineVirtualCamera>().Follow = _p.transform;
+
+            GameManager.instance.PlayerCharacter(_p.GetComponent<PlayerBehaviour>());
 
             GameManager.OnNextGameState?.Invoke(GamePlayStates.START);
 

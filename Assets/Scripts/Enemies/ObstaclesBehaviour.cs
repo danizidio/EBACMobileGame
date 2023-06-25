@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 enum ObstacleType
@@ -19,8 +17,8 @@ public class ObstaclesBehaviour : MonoBehaviour
 
         if (p == null) return;
 
-        if(_obstacleType == ObstacleType.SIMPLE)
-        GameManager.OnNextGameState?.Invoke(GamePlayStates.GAMEOVER);
+        if (_obstacleType == ObstacleType.SIMPLE)
+           StartCoroutine(p.AnimGameOver());
 
         if(_obstacleType == ObstacleType.ENDGAME)
             GameManager.OnNextGameState?.Invoke(GamePlayStates.FINISH_LINE);

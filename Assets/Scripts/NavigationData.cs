@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine;
-using System;
 using UnityEngine.UI;
 using SaveLoadPlayerPrefs;
 
