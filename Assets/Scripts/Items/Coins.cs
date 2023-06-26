@@ -28,7 +28,7 @@ public class Coins : CollectibleItens
 
         _coinTaken = true;
 
-        Invoke("EndObj", 2);    
+        Invoke("EndObj", .5f);    
     }
 
     void EndObj()

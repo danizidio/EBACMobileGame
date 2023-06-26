@@ -34,10 +34,6 @@ public class PlayerBehaviour : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
     }
-    private void Start()
-    {
-        _canMove = true;
-    }
 
     void LateUpdate()
     {
@@ -137,11 +133,19 @@ public class PlayerBehaviour : MonoBehaviour
         return _canMove = b;
     }
 
-    public void AnimStart()
+    public void ResetMoveValues()
     {
+        Moving(0);
         _rb.velocity = Vector3.zero;
+    }
 
+    public IEnumerator AnimStart()
+    {
         _anim.SetTrigger("START");
+
+        yield return new WaitForSeconds(1);
+
+        CanMove(true);
     }
 
     public IEnumerator  AnimGameOver()

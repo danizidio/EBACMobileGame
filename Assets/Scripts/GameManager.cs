@@ -130,8 +130,8 @@ public class GameManager : GamePlayBehaviour
        OnNextGameState.Invoke(GamePlayStates.GAMEPLAY);
 
         _playerBehaviour.GetComponent<PlayerBehaviour>().enabled = true;
-
-        _playerBehaviour.AnimStart();
+        StartCoroutine(_playerBehaviour.AnimStart());
+        _playerBehaviour.ResetMoveValues();
     }
 
 
