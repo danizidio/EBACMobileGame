@@ -7,14 +7,14 @@ public class CollectorPowerUp : PowerUpBase
 
     protected override void StartPowerUp()
     {
-        p.CollectorBuff(_colliderSize);
+        p?.CollectorBuff(_colliderSize);
 
         base.StartPowerUp();
     }
 
     protected override void EndPowerUp()
     {
-        p.CollectorBuff(Vector3.one);
+        p?.CollectorBuff(Vector3.one);
 
         base.EndPowerUp();
     }

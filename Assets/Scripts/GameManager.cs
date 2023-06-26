@@ -127,11 +127,11 @@ public class GameManager : GamePlayBehaviour
 
     public void StartGame()
     {
+       OnNextGameState.Invoke(GamePlayStates.GAMEPLAY);
+
         _playerBehaviour.GetComponent<PlayerBehaviour>().enabled = true;
 
         _playerBehaviour.AnimStart();
-
-       OnNextGameState.Invoke(GamePlayStates.GAMEPLAY);
     }
 
 

@@ -30,10 +30,12 @@ public class PlayerBehaviour : MonoBehaviour
 
     Vector3 _positionToGo;
 
-    private void Start()
+    private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
-
+    }
+    private void Start()
+    {
         _canMove = true;
     }
 
@@ -42,7 +44,7 @@ public class PlayerBehaviour : MonoBehaviour
         if (_canMove)
         {
             transform.position += Vector3.right * _forwardSpeed * _speedbonus * Time.deltaTime;
-            transform.position = new Vector3(transform.position.x, transform.position.y + _heightBonus, 0);
+            transform.position += Vector3.up *  _heightBonus;
 
             if (Input.GetMouseButton(0))
                 Moving(Input.mousePosition.x - _positionToGo.x);
@@ -137,6 +139,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void AnimStart()
     {
+        _rb.velocity = Vector3.zero;
+
         _anim.SetTrigger("START");
     }
 
@@ -150,7 +154,7 @@ public class PlayerBehaviour : MonoBehaviour
         GameManager.OnNextGameState?.Invoke(GamePlayStates.GAMEOVER);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
         if (collision.collider.gameObject.layer == 6)
         {
