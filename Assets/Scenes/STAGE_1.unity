@@ -530,7 +530,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _footDetector: {fileID: 1946166216}
   _coinCollector: {fileID: 891283356}
-  _canMove: 1
+  _canMove: 0
   _anim: {fileID: 599974756}
   _forwardSpeed: 20
   _speedbonus: 1
