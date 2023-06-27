@@ -20,7 +20,7 @@ public class ObstaclesBehaviour : MonoBehaviour
         if (_obstacleType == ObstacleType.SIMPLE)
            StartCoroutine(p.AnimGameOver());
 
-        if(_obstacleType == ObstacleType.ENDGAME)
-            GameManager.OnNextGameState?.Invoke(GamePlayStates.FINISH_LINE);
+        if (_obstacleType == ObstacleType.ENDGAME)
+            GameManager.instance.CreateNextStage();
     }
 }

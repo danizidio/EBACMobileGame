@@ -11,6 +11,18 @@ public class GameManager : GamePlayBehaviour
 
     PlayerBehaviour _playerBehaviour;
 
+    [SerializeField] int _maxStages;
+    int _currentStageIndex;
+
+    [SerializeField] int _stageLentgh;
+    [SerializeField] GameObject _startPath;
+    [SerializeField] GameObject _endPath;
+    [SerializeField] GameObject[] _pathObjs;
+
+    GameObject _lastSpawnedPath;
+
+    [SerializeField] Material[] _material;
+
     private void Awake()
     {
         instance = this;
@@ -21,6 +33,8 @@ public class GameManager : GamePlayBehaviour
         Application.targetFrameRate = 60;
 
         Time.timeScale = 1;
+
+        CreateNextStage();
 
         OnNextGameState(GamePlayStates.INITIALIZING);
     }
@@ -79,7 +93,7 @@ public class GameManager : GamePlayBehaviour
                 {
                     Time.timeScale = 0;
 
-                    _txt.text = "GAME OVER \n =(";
+                    _txt.text = "Touch to restart \n \n GAME OVER \n =(";
 
                     _pauseMenu.SetActive(true);
 
@@ -94,7 +108,7 @@ public class GameManager : GamePlayBehaviour
                 {
                     Time.timeScale = 0;
 
-                    _txt.text = "YOU WIN!!";
+                    _txt.text = "Touch to restart \n \n YOU WIN!!";
 
                     _pauseMenu.SetActive(true);
 
@@ -134,6 +148,56 @@ public class GameManager : GamePlayBehaviour
         _playerBehaviour.ResetMoveValues();
     }
 
+    public void CreateNextStage()
+    {
+        _currentStageIndex++;
+
+        if (_currentStageIndex <= _maxStages)
+        {
+            Material m = _material[Random.Range(0, _material.Length)];
+
+            for (int i = 0; i < Random.Range(1, 4); i++)
+            {
+                if (_lastSpawnedPath == null)
+                {
+                    _lastSpawnedPath = Instantiate(_startPath);
+                    _lastSpawnedPath.transform.position = Vector3.zero;
+
+                    _lastSpawnedPath.GetComponent<PathwayBase>().ChangeScenarioMaterial(m);
+                }
+                else
+                {
+                    GameObject temp = Instantiate(_startPath);
+                    temp.GetComponent<PathwayBase>().startPath.position = _lastSpawnedPath.GetComponent<PathwayBase>().endPath.position;
+                    _lastSpawnedPath = temp;
+
+                    _lastSpawnedPath.GetComponent<PathwayBase>().ChangeScenarioMaterial(m);
+                }
+            }
+
+            for (int i = 0; i < _stageLentgh; i++)
+            {
+                GameObject temp = Instantiate(_pathObjs[Random.Range(0, _pathObjs.Length)]);
+                temp.GetComponent<PathwayBase>().startPath.position = _lastSpawnedPath.GetComponent<PathwayBase>().endPath.position;
+                _lastSpawnedPath = temp;
+
+                _lastSpawnedPath.GetComponent<PathwayBase>().ChangeScenarioMaterial(m);
+            }
+
+            for (int i = 0; i < 1; i++)
+            {
+                GameObject temp = Instantiate(_endPath);
+                temp.GetComponent<PathwayBase>().startPath.position = _lastSpawnedPath.GetComponent<PathwayBase>().endPath.position;
+                _lastSpawnedPath = temp;
+
+                _lastSpawnedPath.GetComponent<PathwayBase>().ChangeScenarioMaterial(m);
+            }
+        }
+        else
+        {
+            OnNextGameState(GamePlayStates.FINISH_LINE);
+        }
+    }
 
     public PlayerBehaviour PlayerCharacter(PlayerBehaviour playerBehaviour)
     {
