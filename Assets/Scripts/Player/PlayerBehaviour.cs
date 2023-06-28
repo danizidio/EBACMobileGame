@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using SaveLoadPlayerPrefs;
 using System.Collections;
+using DG.Tweening;
 
 public class PlayerBehaviour : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class PlayerBehaviour : MonoBehaviour
     SaveLoad s;
 
     [SerializeField] Animator _anim;
+    [SerializeField] GameObject _playerVisual;
 
     [SerializeField] float _forwardSpeed;
     [SerializeField] float _speedbonus = 1;
@@ -33,6 +35,11 @@ public class PlayerBehaviour : MonoBehaviour
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
+    }
+
+    private void Start()
+    {
+        ScaleAnim();
     }
 
     void LateUpdate()
@@ -94,7 +101,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     #endregion
 
-    #region - PlayerBuffs -
+    #region - Player Buffs
     public void SpeedBuff(float speed)
     {
         _speedbonus = speed;
@@ -104,11 +111,15 @@ public class PlayerBehaviour : MonoBehaviour
         {
             _anim.speed = 1;
         }
+
+        YoyoAnim();
     }
 
     public void HeightBuff(float height)
     {
         _heightBonus = height;
+
+        YoyoAnim();
     }
 
     public void InvincibleBuff(bool active)
@@ -121,13 +132,32 @@ public class PlayerBehaviour : MonoBehaviour
         {
             gameObject.layer = 3;
         }
+
+        YoyoAnim();
     }
 
     public void CollectorBuff(Vector3 size)
     {
         _coinCollector.transform.localScale = size;
+
+        YoyoAnim();
     }
     #endregion
+
+    void YoyoAnim()
+    {
+        _anim.SetTrigger("SPECIALTAKEN");
+        _playerVisual.transform.DOScale(1.2f, .3f).SetEase(Ease.OutBack).SetLoops(2, LoopType.Yoyo);
+    }
+
+    void ScaleAnim()
+    {
+        _playerVisual.transform.localScale = Vector3.zero;
+
+        _playerVisual.transform.DOScale(1, .3f).SetEase(Ease.OutBack);
+    }
+
+        
     public bool CanMove(bool b)
     {
         return _canMove = b;

@@ -10,12 +10,12 @@ public class SpeedPowerUp : PowerUpBase
     {
         base.StartPowerUp();
 
-        p.SpeedBuff(_speedAmount);
+        p?.SpeedBuff(_speedAmount);
     }
 
     protected override void EndPowerUp()
     {
-        p.SpeedBuff(1);
+        p?.SpeedBuff(1);
 
         base.EndPowerUp();
     }

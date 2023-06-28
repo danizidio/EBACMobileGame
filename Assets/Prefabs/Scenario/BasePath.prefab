@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2095215834935435369}
   - component: {fileID: 3036436506086392866}
   - component: {fileID: 6635469727320966744}
+  - component: {fileID: 1682951374735259415}
   m_Layer: 6
   m_Name: BorderLeft
   m_TagString: Untagged
@@ -62,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 8cec9300aa42026409a79856e8723430, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -105,6 +106,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1682951374735259415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 294905141257490622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7048d1cdfc9ed6544ad1d232ec30fc58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startColor: {r: 1, g: 1, b: 1, a: 1}
+  _originalColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1837005619283891332
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,6 +167,7 @@ GameObject:
   - component: {fileID: 8582644943881659516}
   - component: {fileID: 1207191587880663683}
   - component: {fileID: 2901850720113668914}
+  - component: {fileID: 6287800159167942973}
   m_Layer: 6
   m_Name: BorderRight
   m_TagString: Untagged
@@ -202,7 +218,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 8cec9300aa42026409a79856e8723430, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -245,6 +261,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6287800159167942973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4323813434898883455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7048d1cdfc9ed6544ad1d232ec30fc58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startColor: {r: 1, g: 1, b: 1, a: 1}
+  _originalColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &4518191006241100483
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,6 +288,7 @@ GameObject:
   - component: {fileID: 8364498310257305758}
   - component: {fileID: 9041822303216836376}
   - component: {fileID: 4248813507518139683}
+  - component: {fileID: 3504875750632620621}
   m_Layer: 6
   m_Name: Ground
   m_TagString: Untagged
@@ -308,7 +339,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 8cec9300aa42026409a79856e8723430, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -378,6 +409,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3504875750632620621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4518191006241100483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7048d1cdfc9ed6544ad1d232ec30fc58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startColor: {r: 1, g: 1, b: 1, a: 1}
+  _originalColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &7776614864289802783
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,7 +475,9 @@ MonoBehaviour:
   - {fileID: 4323813434898883455}
   - {fileID: 294905141257490622}
   _hasCoins: 0
-  coinPos: []
+  _randomObstacles: 0
+  _coinPos: []
+  _objPos: []
 --- !u!1 &8405918413828280358
 GameObject:
   m_ObjectHideFlags: 0

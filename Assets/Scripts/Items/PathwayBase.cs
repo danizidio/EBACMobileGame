@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -17,13 +18,7 @@ public class PathwayBase : MonoBehaviour
     [SerializeField] float[] _coinPos;
     [SerializeField] float[] _objPos;
 
-    private void Start()
-    {    
-        ChangeCoinPos();
-        ChangeObstaclesPos();
-    }
-
-    void ChangeCoinPos()
+    public void ChangeCoinPos()
     {
         if (!_hasCoins) return;
 
@@ -38,7 +33,7 @@ public class PathwayBase : MonoBehaviour
         }
     }
 
-    void ChangeObstaclesPos()
+    public void ChangeObstaclesPos()
     {
         if (!_randomObstacles) return;
 
@@ -51,7 +46,6 @@ public class PathwayBase : MonoBehaviour
                 obstacle.transform.position.y,
                 obstacle.transform.position.z + _objPos[Random.Range(0, _objPos.Length)]);
         }
-
     }
 
     public void ChangeScenarioMaterial(Material material)
@@ -59,6 +53,7 @@ public class PathwayBase : MonoBehaviour
         foreach (var ground in _ground)
         {
             ground.GetComponent<MeshRenderer>().material = material;
+            StartCoroutine(ground.GetComponent<ChangeColorScenario>().ChangeColor());
         }
     }
 }

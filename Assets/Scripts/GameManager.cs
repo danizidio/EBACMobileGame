@@ -1,6 +1,9 @@
 using UnityEngine;
 using StateMachine;
 using TMPro;
+using DG.Tweening;
+using System.Collections;
+using System.Collections.Generic;
 
 public class GameManager : GamePlayBehaviour
 {
@@ -19,7 +22,9 @@ public class GameManager : GamePlayBehaviour
     [SerializeField] GameObject _endPath;
     [SerializeField] GameObject[] _pathObjs;
 
-    GameObject _lastSpawnedPath;
+    [SerializeField] List<PathwayBase> _spawnedPieces = new List<PathwayBase>();
+
+    [SerializeField] GameObject _lastSpawnedPath;
 
     [SerializeField] Material[] _material;
 
@@ -150,52 +155,87 @@ public class GameManager : GamePlayBehaviour
 
     public void CreateNextStage()
     {
+        ClearList();
+
         _currentStageIndex++;
 
         if (_currentStageIndex <= _maxStages)
         {
-            Material m = _material[Random.Range(0, _material.Length)];
-
             for (int i = 0; i < Random.Range(1, 4); i++)
             {
-                if (_lastSpawnedPath == null)
-                {
-                    _lastSpawnedPath = Instantiate(_startPath);
-                    _lastSpawnedPath.transform.position = Vector3.zero;
-
-                    _lastSpawnedPath.GetComponent<PathwayBase>().ChangeScenarioMaterial(m);
-                }
-                else
-                {
-                    GameObject temp = Instantiate(_startPath);
-                    temp.GetComponent<PathwayBase>().startPath.position = _lastSpawnedPath.GetComponent<PathwayBase>().endPath.position;
-                    _lastSpawnedPath = temp;
-
-                    _lastSpawnedPath.GetComponent<PathwayBase>().ChangeScenarioMaterial(m);
-                }
+                CreatePiece(_startPath);
             }
 
             for (int i = 0; i < _stageLentgh; i++)
             {
-                GameObject temp = Instantiate(_pathObjs[Random.Range(0, _pathObjs.Length)]);
-                temp.GetComponent<PathwayBase>().startPath.position = _lastSpawnedPath.GetComponent<PathwayBase>().endPath.position;
-                _lastSpawnedPath = temp;
-
-                _lastSpawnedPath.GetComponent<PathwayBase>().ChangeScenarioMaterial(m);
+                CreatePiece(_pathObjs[Random.Range(0, _pathObjs.Length)]);
             }
 
             for (int i = 0; i < 1; i++)
             {
-                GameObject temp = Instantiate(_endPath);
-                temp.GetComponent<PathwayBase>().startPath.position = _lastSpawnedPath.GetComponent<PathwayBase>().endPath.position;
-                _lastSpawnedPath = temp;
-
-                _lastSpawnedPath.GetComponent<PathwayBase>().ChangeScenarioMaterial(m);
+                CreatePiece(_endPath);
             }
+
+            ChangeMaterialColor();
+
+            StartCoroutine(ScaleEffect());
         }
         else
         {
             OnNextGameState(GamePlayStates.FINISH_LINE);
+        }
+    }
+
+    void ClearList()
+    {
+        _spawnedPieces.Clear();
+    }
+
+    void CreatePiece(GameObject piece)
+    {
+        if (_lastSpawnedPath == null)
+        {
+            _lastSpawnedPath = Instantiate(piece);
+            _lastSpawnedPath.transform.position = Vector3.zero;       
+        }
+        else
+        {
+            GameObject temp = Instantiate(piece);
+            temp.GetComponent<PathwayBase>().startPath.position = _lastSpawnedPath.GetComponent<PathwayBase>().endPath.position;
+           
+            _lastSpawnedPath = temp;
+        }
+
+        _spawnedPieces.Add(_lastSpawnedPath.GetComponent<PathwayBase>());
+    }
+
+    void ChangeMaterialColor()
+    {
+        Material m = _material[Random.Range(0, _material.Length)];
+
+        foreach (var piece in _spawnedPieces)
+        {
+            piece.GetComponent<PathwayBase>().ChangeScenarioMaterial(m);
+        }
+    }
+
+    IEnumerator ScaleEffect()
+    {
+        foreach (var piece in _spawnedPieces)
+        {
+            piece.transform.localScale = Vector3.zero;
+        }
+       
+        yield return null;
+
+        for (int i = 0; i < _spawnedPieces.Count; i++)
+        {
+            _spawnedPieces[i].transform.DOScale(1, .2f).SetEase(Ease.OutBack);
+            
+            yield return new WaitForSeconds(.1f);
+
+            _spawnedPieces[i].GetComponent<PathwayBase>().ChangeCoinPos();
+            _spawnedPieces[i].GetComponent<PathwayBase>().ChangeObstaclesPos();
         }
     }
 

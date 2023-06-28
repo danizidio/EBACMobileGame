@@ -540,9 +540,10 @@ MonoBehaviour:
   _coinCollector: {fileID: 891283356}
   _canMove: 0
   _anim: {fileID: 599974756}
-  _forwardSpeed: 30
+  _playerVisual: {fileID: 1456866934}
+  _forwardSpeed: 80
   _speedbonus: 1
-  _horizontalVelocity: 2
+  _horizontalVelocity: 1
 --- !u!65 &66980910
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1476,7 +1477,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &427515532
 Transform:
   m_ObjectHideFlags: 0
@@ -1873,7 +1874,7 @@ MonoBehaviour:
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
-  m_Antialiasing: 0
+  m_Antialiasing: 1
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
@@ -1902,8 +1903,8 @@ Camera:
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1925,7 +1926,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.1
-  far clip plane: 50
+  far clip plane: 500
   field of view: 40
   orthographic: 0
   orthographic size: 10
@@ -2001,7 +2002,7 @@ MonoBehaviour:
     FieldOfView: 40
     OrthographicSize: 10
     NearClipPlane: 0.1
-    FarClipPlane: 50
+    FarClipPlane: 500
     Dutch: 0
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
@@ -5189,7 +5190,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1860544440321517762, guid: 8af2db03a988c14409f1a280a55ef2a0, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7662609323323022667, guid: 8af2db03a988c14409f1a280a55ef2a0, type: 3}
       propertyPath: _heightAmount
@@ -5547,7 +5548,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7485839630949626692, guid: 3aca1098e9984e4419fdeed486a8b077, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7531120663495756074, guid: 3aca1098e9984e4419fdeed486a8b077, type: 3}
       propertyPath: m_RootOrder
@@ -6425,7 +6426,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.010009766, y: 22.380127}
+  m_AnchoredPosition: {x: 0.010009766, y: 22.379883}
   m_SizeDelta: {x: 0, y: -44.80005}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1721948304
@@ -6992,7 +6993,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7089179682826574208, guid: 7a0e1cb7bfc430842898f473838ebd6d, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7854614684207719406, guid: 7a0e1cb7bfc430842898f473838ebd6d, type: 3}
       propertyPath: m_RootOrder
@@ -7352,6 +7353,10 @@ MonoBehaviour:
   - {fileID: 825706355657289063, guid: 564546823f527c34f8aac9a254ab439b, type: 3}
   - {fileID: 825706355657289063, guid: 564546823f527c34f8aac9a254ab439b, type: 3}
   - {fileID: 825706355657289063, guid: 54fbc08dff03aa44eba55069c4803cfb, type: 3}
+  - {fileID: 825706355657289063, guid: 2b9f440a9edc56b40a3ac2e6a1ee860b, type: 3}
+  - {fileID: 825706355657289063, guid: 80b6b0469004fa543be26500c34e4c14, type: 3}
+  _spawnedPieces: []
+  _lastSpawnedPath: {fileID: 0}
   _material:
   - {fileID: 2100000, guid: 009fc875c1f81f34c8936a260cd4f98b, type: 2}
   - {fileID: 2100000, guid: 84abcc4ba8283d24da0833ef437dcbc7, type: 2}
@@ -7857,7 +7862,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 444759534821418067, guid: e278f49c2a266c640ad2f5f853f9019f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -41.25
+      value: -65.2
       objectReference: {fileID: 0}
     - target: {fileID: 444759534821418067, guid: e278f49c2a266c640ad2f5f853f9019f, type: 3}
       propertyPath: m_LocalPosition.y

@@ -52,6 +52,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1483542804253509889, guid: 1672fc985faefac42a462d38b7d46f70, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1483542804253509889, guid: 1672fc985faefac42a462d38b7d46f70, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1483542804253509916, guid: 1672fc985faefac42a462d38b7d46f70, type: 3}
       propertyPath: m_Name
       value: Coin (8)
@@ -129,6 +137,14 @@ PrefabInstance:
     - target: {fileID: 1483542804253509888, guid: 1672fc985faefac42a462d38b7d46f70, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1483542804253509889, guid: 1672fc985faefac42a462d38b7d46f70, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1483542804253509889, guid: 1672fc985faefac42a462d38b7d46f70, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1483542804253509916, guid: 1672fc985faefac42a462d38b7d46f70, type: 3}
       propertyPath: m_Name
@@ -208,6 +224,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1483542804253509889, guid: 1672fc985faefac42a462d38b7d46f70, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1483542804253509889, guid: 1672fc985faefac42a462d38b7d46f70, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1483542804253509916, guid: 1672fc985faefac42a462d38b7d46f70, type: 3}
       propertyPath: m_Name
       value: Coin (4)
@@ -272,7 +296,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6792222654103220819, guid: f53996e5a795a204596d7275a258f333, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -13.78
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6792222654103220819, guid: f53996e5a795a204596d7275a258f333, type: 3}
       propertyPath: m_LocalRotation.w
@@ -395,6 +419,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1483542804253509889, guid: 1672fc985faefac42a462d38b7d46f70, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1483542804253509889, guid: 1672fc985faefac42a462d38b7d46f70, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1483542804253509916, guid: 1672fc985faefac42a462d38b7d46f70, type: 3}
       propertyPath: m_Name
       value: Coin (1)
@@ -472,6 +504,14 @@ PrefabInstance:
     - target: {fileID: 1483542804253509888, guid: 1672fc985faefac42a462d38b7d46f70, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1483542804253509889, guid: 1672fc985faefac42a462d38b7d46f70, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1483542804253509889, guid: 1672fc985faefac42a462d38b7d46f70, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1483542804253509916, guid: 1672fc985faefac42a462d38b7d46f70, type: 3}
       propertyPath: m_Name
@@ -551,6 +591,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1483542804253509889, guid: 1672fc985faefac42a462d38b7d46f70, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1483542804253509889, guid: 1672fc985faefac42a462d38b7d46f70, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1483542804253509916, guid: 1672fc985faefac42a462d38b7d46f70, type: 3}
       propertyPath: m_Name
       value: Coin (7)
@@ -628,6 +676,14 @@ PrefabInstance:
     - target: {fileID: 1483542804253509888, guid: 1672fc985faefac42a462d38b7d46f70, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1483542804253509889, guid: 1672fc985faefac42a462d38b7d46f70, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1483542804253509889, guid: 1672fc985faefac42a462d38b7d46f70, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1483542804253509916, guid: 1672fc985faefac42a462d38b7d46f70, type: 3}
       propertyPath: m_Name
@@ -707,6 +763,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1483542804253509889, guid: 1672fc985faefac42a462d38b7d46f70, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1483542804253509889, guid: 1672fc985faefac42a462d38b7d46f70, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1483542804253509916, guid: 1672fc985faefac42a462d38b7d46f70, type: 3}
       propertyPath: m_Name
       value: Coin (5)
@@ -784,6 +848,14 @@ PrefabInstance:
     - target: {fileID: 1483542804253509888, guid: 1672fc985faefac42a462d38b7d46f70, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1483542804253509889, guid: 1672fc985faefac42a462d38b7d46f70, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1483542804253509889, guid: 1672fc985faefac42a462d38b7d46f70, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1483542804253509916, guid: 1672fc985faefac42a462d38b7d46f70, type: 3}
       propertyPath: m_Name
