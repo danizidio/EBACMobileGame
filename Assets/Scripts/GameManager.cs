@@ -9,6 +9,8 @@ public class GameManager : GamePlayBehaviour
 {
     public static GameManager instance;
 
+    [SerializeField] GameObject _trailObj;
+
     [SerializeField] TMP_Text _txt;
     [SerializeField] GameObject _pauseMenu;
 
@@ -27,6 +29,8 @@ public class GameManager : GamePlayBehaviour
     [SerializeField] GameObject _lastSpawnedPath;
 
     [SerializeField] Material[] _material;
+
+    [SerializeField] Transform _lastPathPos;
 
     private void Awake()
     {
@@ -157,6 +161,8 @@ public class GameManager : GamePlayBehaviour
     {
         ClearList();
 
+        _trailObj.SetActive(true);
+
         _currentStageIndex++;
 
         if (_currentStageIndex <= _maxStages)
@@ -191,6 +197,12 @@ public class GameManager : GamePlayBehaviour
         _spawnedPieces.Clear();
     }
 
+    public Transform LastSpawnedPos()
+    {
+        if (_lastPathPos == null) return this.transform;
+        return _lastPathPos;
+    }
+
     void CreatePiece(GameObject piece)
     {
         if (_lastSpawnedPath == null)
@@ -202,10 +214,10 @@ public class GameManager : GamePlayBehaviour
         {
             GameObject temp = Instantiate(piece);
             temp.GetComponent<PathwayBase>().startPath.position = _lastSpawnedPath.GetComponent<PathwayBase>().endPath.position;
-           
+
             _lastSpawnedPath = temp;
         }
-
+        
         _spawnedPieces.Add(_lastSpawnedPath.GetComponent<PathwayBase>());
     }
 
@@ -236,7 +248,11 @@ public class GameManager : GamePlayBehaviour
 
             _spawnedPieces[i].GetComponent<PathwayBase>().ChangeCoinPos();
             _spawnedPieces[i].GetComponent<PathwayBase>().ChangeObstaclesPos();
+
+            _lastPathPos = _spawnedPieces[i].GetComponent<PathwayBase>().startPath;
         }
+
+        _trailObj.SetActive(false);
     }
 
     public PlayerBehaviour PlayerCharacter(PlayerBehaviour playerBehaviour)

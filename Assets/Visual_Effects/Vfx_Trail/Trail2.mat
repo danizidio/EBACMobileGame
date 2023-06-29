@@ -21,8 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Trail2
-  m_Shader: {fileID: -6465566751694194690, guid: 893af4d6b4e061545a57c4b7472c6a0e,
-    type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 893af4d6b4e061545a57c4b7472c6a0e, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -59,8 +58,8 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Color1: {r: 0.15449658, g: 0.6179863, b: 10.81476, a: 1}
-    - _Color2: {r: 0.020483544, g: 0.020483544, b: 0.36187592, a: 1}
+    - _Color1: {r: 0.34240893, g: 1.3696357, b: 23.968624, a: 1}
+    - _Color2: {r: 0.08193418, g: 0.08193418, b: 1.4475037, a: 1}
     - _DissolveSpeed: {r: -0.5, g: 0, b: 0, a: 0}
     - _MainTexSpeed: {r: -0.1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

@@ -15,6 +15,8 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] Transform _footDetector;
     [SerializeField] GameObject _coinCollector;
 
+    [SerializeField] GameObject _particles;
+
     [SerializeField] bool _canMove;
     public bool canMove { get { return _canMove; } }
 
@@ -40,6 +42,7 @@ public class PlayerBehaviour : MonoBehaviour
     private void Start()
     {
         ScaleAnim();
+        _particles.SetActive(true);
     }
 
     void LateUpdate()
