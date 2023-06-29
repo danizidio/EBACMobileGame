@@ -54,6 +54,8 @@ public class ChangeScene : Timer
 
     public IEnumerator LoadingNextScene(string sceneName)
     {
+        yield return new WaitForSeconds(2);
+
         AsyncOperation loading = SceneManager.LoadSceneAsync(sceneName);
 
         while (!loading.isDone)

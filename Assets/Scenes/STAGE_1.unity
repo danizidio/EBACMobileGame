@@ -1479,7 +1479,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &427515532
 Transform:
   m_ObjectHideFlags: 0
@@ -7320,7 +7320,10 @@ VisualEffect:
     m_Gradient:
       m_Array: []
     m_NamedObject:
-      m_Array: []
+      m_Array:
+      - m_Value: {fileID: 2800000, guid: c8ec5301281bec14384eb01cede50a34, type: 3}
+        m_Name: PuddleTex
+        m_Overridden: 1
     m_Bool:
       m_Array: []
 --- !u!1 &1887946767
