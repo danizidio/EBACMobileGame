@@ -100,7 +100,7 @@ public class GameManager : GamePlayBehaviour
                 }
             case GamePlayStates.GAMEOVER:
                 {
-                    Time.timeScale = 0;
+                    Time.timeScale = 1;
 
                     _txt.text = "Touch to restart \n \n GAME OVER \n =(";
 

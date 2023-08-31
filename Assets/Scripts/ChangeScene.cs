@@ -69,10 +69,11 @@ public class ChangeScene : Timer
     private void OnEnable()
     {
         OnChangeScene += SelectingNextScene;
-        OnReloadScene = ReloadScene;
+        OnReloadScene += ReloadScene;
     }
     private void OnDisable()
     {
         OnChangeScene -= SelectingNextScene;
+        OnReloadScene -= ReloadScene;
     }
 }
