@@ -1,9 +1,7 @@
 using System.Collections;
 using UnityEngine;
-using Cinemachine;
+using Unity.Cinemachine;
 
-[RequireComponent(typeof(CinemachineBrain))]
-[RequireComponent(typeof(CinemachineVirtualCamera))]
 public class CameraBehaviour : MonoBehaviour
 {
     public delegate void _onSearchingPlayer();
@@ -12,6 +10,7 @@ public class CameraBehaviour : MonoBehaviour
     public delegate void _onGetFocus(GameObject item);
     public static _onGetFocus OnGetFocus;
 
+    CinemachineCamera _camera;
     [SerializeField] float _cameraSizeMinimum;
     [SerializeField] float _cameraSizeMaximum;
     [SerializeField] float _maxTimeOnFocus;
@@ -20,7 +19,14 @@ public class CameraBehaviour : MonoBehaviour
 
     void FindPlayer()
     {
-        StartCoroutine(CorroutineFindPlayer());
+        if ((_camera == null))
+        {
+            _camera = FindAnyObjectByType<CinemachineCamera>();
+        }
+        if (_camera != null)
+        {
+            StartCoroutine(CorroutineFindPlayer());
+        }
     }
 
     IEnumerator CorroutineFindPlayer()
@@ -31,7 +37,7 @@ public class CameraBehaviour : MonoBehaviour
 
         if (_p != null)
         {
-            GetComponent<CinemachineVirtualCamera>().Follow = _p.transform;
+            _camera.Follow = _p.transform;
 
             GameManager.instance.PlayerCharacter(_p.GetComponent<PlayerBehaviour>());
 
@@ -47,11 +53,11 @@ public class CameraBehaviour : MonoBehaviour
 
     void ObjectToFocus(GameObject item)
     {
-        if (GetComponent<CinemachineVirtualCamera>().Follow != _p)
+        if (_camera.Follow != _p)
         {
             StopCoroutine("CorroutineObjectToFocus");
 
-            GetComponent<CinemachineVirtualCamera>().Follow = null;
+            _camera.Follow = null;
 
             StartCoroutine(CorroutineObjectToFocus(item));
         }
@@ -63,15 +69,15 @@ public class CameraBehaviour : MonoBehaviour
 
     IEnumerator CorroutineObjectToFocus(GameObject item)
     {
-        GetComponent<CinemachineVirtualCamera>().Follow = item.transform;
+        _camera.Follow = item.transform;
 
-        GetComponent<CinemachineVirtualCamera>().m_Lens.OrthographicSize = _cameraSizeMinimum;
+        _camera.Lens.OrthographicSize = _cameraSizeMinimum;
 
         yield return new WaitForSeconds(_maxTimeOnFocus);
 
-        GetComponent<CinemachineVirtualCamera>().Follow = _p.transform;
+        _camera.Follow = _p.transform;
 
-        GetComponent<CinemachineVirtualCamera>().m_Lens.OrthographicSize = _cameraSizeMaximum;
+        _camera.Lens.OrthographicSize = _cameraSizeMaximum;
     }
     private void OnEnable()
     {

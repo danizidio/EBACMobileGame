@@ -66,7 +66,7 @@ public class PlayerBehaviour : MonoBehaviour
     void Moving(float m)
     {
         //transform.position -= Vector3.forward * Time.deltaTime * m * _horizontalVelocity;
-        _rb.velocity -= Vector3.forward * Time.deltaTime * m * _horizontalVelocity;
+        _rb.linearVelocity -= Vector3.forward * Time.deltaTime * m * _horizontalVelocity;
     }
 
     #region - InputManager Buttons
@@ -169,7 +169,7 @@ public class PlayerBehaviour : MonoBehaviour
     public void ResetMoveValues()
     {
         Moving(0);
-        _rb.velocity = Vector3.zero;
+        _rb.linearVelocity = Vector3.zero;
     }
 
     public IEnumerator AnimStart()
